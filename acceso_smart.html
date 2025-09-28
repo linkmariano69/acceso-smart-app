@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.2.3.2 (Linux)"/>
+	<meta name="created" content="2025-09-27T23:19:38.618687423"/>
+	<meta name="changed" content="2025-09-27T23:20:37.055190467"/>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		p { line-height: 115%; margin-bottom: 0.25cm; background: transparent }
+	</style>
+</head>
+<body lang="es-AR" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 100%; margin-bottom: 0cm">
+&lt;div id=&quot;intercom-view&quot; style=&quot;display: none;
+margin-top: 20px; width: 100%; max-width: 450px;&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;h2
+style=&quot;color: #e74c3c;&quot;&gt;Llamada Activa 🔴&lt;/h2&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;div
+style=&quot;background-color: #000; height: 300px; border-radius:
+8px; margin-bottom: 10px;&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            &lt;video
+id=&quot;localVideo&quot; autoplay style=&quot;width: 100%; height:
+100%; object-fit: cover; border-radius: 8px;&quot;&gt;&lt;/video&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;/div&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;p
+style=&quot;font-size: small; color: #7f8c8d;&quot;&gt;Su video y voz
+se están transmitiendo a: &lt;strong
+id=&quot;residente-llamado&quot;&gt;&lt;/strong&gt;&lt;/p&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;div
+style=&quot;border: 1px solid #ccc; height: 150px; overflow-y:
+scroll; padding: 10px; background-color: #f9f9f9; text-align: left;&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            &lt;p
+style=&quot;margin: 5px 0;&quot;&gt;&lt;strong style=&quot;color:
+blue;&quot;&gt;(Residente):&lt;/strong&gt; Un momento, ya bajo.&lt;/p&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            &lt;p
+style=&quot;margin: 5px 0;&quot;&gt;&lt;strong style=&quot;color:
+green;&quot;&gt;(Tú):&lt;/strong&gt; Gracias.&lt;/p&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            &lt;div
+id=&quot;chat-messages&quot;&gt;&lt;/div&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;/div&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;input
+type=&quot;text&quot; placeholder=&quot;Escribe un mensaje de
+chat...&quot; style=&quot;width: 95%; margin-top: 5px;&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        &lt;button
+onclick=&quot;finalizarLlamada()&quot; style=&quot;background-color:
+#c0392b; margin-top: 15px;&quot;&gt;FINALIZAR LLAMADA&lt;/button&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;/div&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    ```</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">### Código
+JavaScript (Lógica de Intercomunicador)</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">Ahora, reemplaza la
+función `tocarTimbreDesdeBusqueda` y añade las nuevas funciones en
+tu sección `&lt;script&gt;`:</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">```javascript</p>
+<p style="line-height: 100%; margin-bottom: 0cm">// --- NUEVA LÓGICA
+DE VIDEO/CHAT ---</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">const intercomView =
+document.getElementById('intercom-view');</p>
+<p style="line-height: 100%; margin-bottom: 0cm">const
+residenteLlamado = document.getElementById('residente-llamado');</p>
+<p style="line-height: 100%; margin-bottom: 0cm">const localVideo =
+document.getElementById('localVideo');</p>
+<p style="line-height: 100%; margin-bottom: 0cm">const
+containerPrincipal = document.querySelector('.container'); // El
+contenedor del formulario/buscador</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">function
+tocarTimbreDesdeBusqueda(usuario) {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    const { nombre,
+depto } = usuario;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    // Oculta la
+interfaz de búsqueda y muestra la de video/chat</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+containerPrincipal.style.display = 'none';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+intercomView.style.display = 'block';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+residenteLlamado.textContent = `${nombre} (${depto})`;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+resultadoDiv.style.display = 'none'; // Oculta el mensaje de
+resultado</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    // SOLICITUD
+CRUCIAL: Intenta acceder a la cámara y micrófono</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        .then(stream
+=&gt; {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+localVideo.srcObject = stream; // Muestra el video en la interfaz</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+localVideo.play();</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+console.log('Cámara y Micrófono accesibles y listos para la
+llamada.');</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            // Aquí
+es donde en una app real, el stream se enviaría al servidor WebRTC.</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        })</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        .catch(error
+=&gt; {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+console.error('Error al acceder a la cámara/micrófono:', error);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+residenteLlamado.textContent = `Error: Debes permitir el acceso a
+cámara y micrófono.`;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            //
+Muestra un mensaje de error al usuario.</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        });</p>
+<p style="line-height: 100%; margin-bottom: 0cm">}</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">function
+finalizarLlamada() {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    // 1. Detener la
+cámara y micrófono (liberar recursos)</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    if
+(localVideo.srcObject) {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">       
+localVideo.srcObject.getTracks().forEach(track =&gt; track.stop());</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    }</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    // 2. Ocultar la
+interfaz de video y restaurar la interfaz principal</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+intercomView.style.display = 'none';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+containerPrincipal.style.display = 'block';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+resultadoDiv.style.display = 'block';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+resultadoDiv.textContent = `Llamada finalizada.`;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    // Opcional:
+Limpiar el campo de búsqueda 
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+document.getElementById('barra-busqueda').value = '';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+resultadosBusquedaDiv.innerHTML = '&lt;p class=&quot;info-msg&quot;&gt;Ingresa
+al menos 2 letras/números para buscar.&lt;/p&gt;';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">}</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">// Asegúrate de que
+tu función tocarTimbreManual() aún funciona para el modo manual.</p>
+<p style="line-height: 100%; margin-bottom: 0cm">// ... (El resto de
+tus funciones: tocarTimbreManual, inicializarApp, etc., se mantienen
+sin cambios)</p>
+</body>
+</html>
